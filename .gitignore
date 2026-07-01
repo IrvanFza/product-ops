@@ -22,6 +22,23 @@ plugins.lock
 /brand/
 /proof-points.md
 
+# Vendored skills (installed at init via scaffolder / `npx skills add`) — don't commit.
+# Keep the repo's own skills (product-ops, product-creation) tracked.
+/.agents/skills/*
+!/.agents/skills/product-ops/
+!/.agents/skills/product-creation/
+# Per-CLI skill dirs are populated at init by ensureSkillEntrypoints — ship empty.
+/.claude/skills/*
+!/.claude/skills/.gitkeep
+/.opencode/skills/*
+!/.opencode/skills/.gitkeep
+/.qwen/skills/*
+!/.qwen/skills/.gitkeep
+/.antigravitycli/skills/*
+!/.antigravitycli/skills/.gitkeep
+/.grok/skills/*
+!/.grok/skills/.gitkeep
+
 .env
 .env.*
 .DS_Store

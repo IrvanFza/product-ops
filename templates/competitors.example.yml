@@ -26,7 +26,8 @@ sources:
     query: ""
   google_trends:
     enabled: true
-    keywords: []
+    geo: "ID"        # your market: US, ID, GB, ... (defaults US). Set to your ICP country.
+    keywords: []     # per-keyword interest-over-time slope — TODO (daily-trending for now)
   github:
     enabled: true
     topic: ""

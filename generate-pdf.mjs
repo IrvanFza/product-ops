@@ -14,7 +14,7 @@
 
 import { chromium } from 'playwright';
 import { resolve, dirname, relative, isAbsolute, join } from 'path';
-import { readFile, mkdirSync, appendFileSync } from 'fs';
+import { readFileSync, mkdirSync, appendFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -40,7 +40,7 @@ mkdirSync(dirname(PDF_INDEX), { recursive: true });
 function fileUrl(p) { return 'file://' + (isAbsolute(p) ? p : resolve(process.cwd(), p)); }
 
 (async () => {
-  const html = await readFile(inAbs, 'utf-8');
+  const html = readFileSync(inAbs, 'utf-8');
   const browser = await chromium.launch({ headless: true });
   try {
     const page = await browser.newPage();

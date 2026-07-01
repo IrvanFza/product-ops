@@ -112,11 +112,25 @@ async function main() {
     }
   }
 
-  console.log("\n→ Installing dependencies (incl. Playwright Chromium)…");
+  console.log("\n→ Installing dependencies…");
+  // Some npm envs block postinstall scripts (EALLOWSCRIPTS). Retry without
+  // scripts, then install Chromium explicitly so PDF/browser features still work.
   try {
     execFileSync(NPM, ["install"], { cwd: targetAbs, stdio: "inherit" });
-  } catch (e) {
-    console.warn(`\n⚠ npm install failed: ${e.message}. Run "npm install" inside ${target} manually.`);
+  } catch {
+    try {
+      execFileSync(NPM, ["install", "--ignore-scripts"], { cwd: targetAbs, stdio: "inherit" });
+    } catch (e) {
+      console.warn(`\n⚠ npm install failed: ${e.message}. Run "npm install" inside ${target} manually.`);
+    }
+  }
+
+  console.log("\n→ Ensuring Playwright Chromium…");
+  const pw = spawnSync("npx", ["playwright", "install", "chromium"], {
+    cwd: targetAbs, stdio: "inherit", shell: process.platform === "win32",
+  });
+  if (pw.status !== 0) {
+    console.warn("\n⚠ Chromium install failed. Run `npx playwright install chromium` inside the workspace.");
   }
 
   ensureSkillEntrypoints(targetAbs);
