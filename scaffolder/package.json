@@ -1,6 +1,6 @@
 {
   "name": "product-ops",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "One-command installer for the product-ops AI product-creation pipeline workspace.",
   "license": "MIT",
   "author": "IrvanFza",

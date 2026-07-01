@@ -1,0 +1,13 @@
+# Plugin activation toggles (USER file — never auto-updated).
+# Seed from config/plugins.example.yml. Plugins are opt-in, trust-rooted
+# integrations for paid/auth-gated market intel. v0.1 lists/activates only.
+
+plugins:
+  ahrefs:
+    enabled: false
+  similarweb:
+    enabled: false
+  alphasense:
+    enabled: false
+  appfigures:
+    enabled: false

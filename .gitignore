@@ -12,6 +12,16 @@ plugins.lock
 .update-backup/
 .update-dismissed
 
+# User onboarding files (created at first run; ship the .example templates instead)
+/idea.md
+/config/product.yml
+/modes/_profile.md
+/modes/_custom.md
+/competitors.yml
+/.agents/product-marketing.md
+/brand/
+/proof-points.md
+
 .env
 .env.*
 .DS_Store

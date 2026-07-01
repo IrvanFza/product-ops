@@ -1,0 +1,32 @@
+{
+  "plugins": [
+    {
+      "id": "ahrefs",
+      "name": "Ahrefs",
+      "repo": "",
+      "description": "Paid SEO/backlink/keyword intelligence (auth-gated).",
+      "trust": "community"
+    },
+    {
+      "id": "similarweb",
+      "name": "SimilarWeb",
+      "repo": "",
+      "description": "Paid traffic & competitor analytics (auth-gated).",
+      "trust": "community"
+    },
+    {
+      "id": "alphasense",
+      "name": "AlphaSense",
+      "repo": "",
+      "description": "Paid market-research search engine (auth-gated).",
+      "trust": "community"
+    },
+    {
+      "id": "appfigures",
+      "name": "appFigures",
+      "repo": "",
+      "description": "Paid app-store rankings & review intelligence (auth-gated).",
+      "trust": "community"
+    }
+  ]
+}
