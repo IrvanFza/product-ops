@@ -23,13 +23,21 @@ export function classifyLiveness({ status, finalUrl, title, bodyText = '' }) {
     return { result: 'unclear', reason: `HTTP ${status} (server error)` };
   }
 
-  const CLOSED_SIGNALS = [
-    'not found', '404', 'page not found', 'no longer available',
-    'has been shut down', 'has shut down', 'shut down', 'sunset', 'sunsetted',
-    'discontinued', 'out of business', 'closed down', 'acquired by',
+  // Strong multi-word phrases unlikely in marketing copy. Bare 'sunset'/'shut down'
+  // substrings false-positive on ad copy (e.g. Madgicx's page mentions 'sunset').
+  const STRONG_BODY_CLOSED = [
+    'has been shut down', 'has shut down', 'we have discontinued',
+    'service has been discontinued', 'no longer available',
+    'out of business', 'closed down',
   ];
-  if (CLOSED_SIGNALS.some((s) => text.includes(s))) {
-    return { result: 'closed', reason: 'page text signals closure/sunset' };
+  // Title-level signals are reliable (a product page titled '... shut down' is real).
+  const TITLE_CLOSED = ['shut down', 'sunset', 'discontinued', 'out of business', 'closed'];
+  const tlow = t.toLowerCase();
+  if (TITLE_CLOSED.some((s) => tlow.includes(s))) {
+    return { result: 'closed', reason: `title signals closure (${t})` };
+  }
+  if (STRONG_BODY_CLOSED.some((s) => text.includes(s))) {
+    return { result: 'closed', reason: 'page text signals closure' };
   }
 
   // Active: a real title + some body content (product copy / pricing / about).
