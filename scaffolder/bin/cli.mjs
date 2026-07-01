@@ -8,8 +8,8 @@
 // the agent runs a conversational onboarding on first launch (see AGENTS.md
 // "First Run — Onboarding"), triggered precisely by those files being absent.
 import { execFileSync, spawnSync } from "node:child_process";
-import { existsSync, mkdirSync } from "node:fs";
-import { join, delimiter } from "node:path";
+import { existsSync, mkdirSync, readdirSync, cpSync, rmSync } from "node:fs";
+import { join, delimiter, isAbsolute } from "node:path";
 import { ensureSkillEntrypoints } from "./skill-entrypoints.mjs";
 
 const REPO = "https://github.com/IrvanFza/product-ops.git";
@@ -71,19 +71,32 @@ async function latestTag() {
   }
 }
 
-// ponytail: non-fatal wrapper — marketingskills is the skill base, but its
-// absence shouldn't block init. Print the manual command if it fails.
+// Non-interactive marketingskills install: `npx skills add` is an interactive
+// TUI that hangs in CI / non-interactive init. Clone+copy instead so init never
+// blocks. Users can still run `npx skills add coreyhaines31/marketingskills`
+// interactively later to pick a subset. Non-fatal on failure.
 function installMarketingskills(targetDir) {
   console.log("\n→ Installing marketingskills (the skill base)…");
-  const r = spawnSync("npx", ["skills", "add", "coreyhaines31/marketingskills"], {
-    cwd: targetDir, stdio: "inherit", shell: process.platform === "win32",
-  });
-  if (r.status !== 0) {
-    console.warn(
-      "\n⚠ Could not auto-install marketingskills (npx skills unavailable?).\n" +
-      "  Install manually inside the workspace:\n" +
-      "    npx skills add coreyhaines31/marketingskills\n"
-    );
+  const tmp = join(targetDir, "..", `.ms-clone-${Date.now()}`);
+  const clone = spawnSync(GIT, ["clone", "--depth", "1", "https://github.com/coreyhaines31/marketingskills.git", tmp], { stdio: "ignore" });
+  if (clone.status !== 0) {
+    console.warn("\n⚠ Could not clone marketingskills. Install manually:\n  npx skills add coreyhaines31/marketingskills\n");
+    return;
+  }
+  try {
+    const msDir = join(targetDir, ".agents", "skills");
+    mkdirSync(msDir, { recursive: true });
+    let n = 0;
+    for (const name of readdirSync(join(tmp, "skills"))) {
+      cpSync(join(tmp, "skills", name), join(msDir, name), { recursive: true });
+      n++;
+    }
+    ensureSkillEntrypoints(targetDir); // re-mirror per-CLI dirs with the new skills
+    console.log(`  ✓ marketingskills installed (${n} skills).`);
+  } catch (e) {
+    console.warn(`\n⚠ marketingskills copy failed: ${e.message}.\n  Run 'npx skills add coreyhaines31/marketingskills' manually.\n`);
+  } finally {
+    rmSync(tmp, { recursive: true, force: true });
   }
 }
 
@@ -93,7 +106,7 @@ async function main() {
   if (cmd !== "init") die(`Unknown command "${cmd}". Usage: npx product-ops init [folder]`);
 
   const target = dirArg || "product-ops";
-  const targetAbs = join(process.cwd(), target);
+  const targetAbs = isAbsolute(target) ? target : join(process.cwd(), target);
   if (existsSync(targetAbs)) die(`"${target}" already exists. Choose a different folder.`);
 
   console.log(`\n→ Cloning product-ops into ${target}…`);
@@ -126,9 +139,15 @@ async function main() {
   }
 
   console.log("\n→ Ensuring Playwright Chromium…");
-  const pw = spawnSync("npx", ["playwright", "install", "chromium"], {
-    cwd: targetAbs, stdio: "inherit", shell: process.platform === "win32",
-  });
+  // Bypass `npx` — it can hang on npm script-policy prompts in non-interactive
+  // envs. Run the local playwright CLI directly via node.
+  const pwCli = join(targetAbs, "node_modules", "playwright", "cli.js");
+  let pw;
+  if (existsSync(pwCli)) {
+    pw = spawnSync(process.execPath, [pwCli, "install", "chromium"], { cwd: targetAbs, stdio: "inherit" });
+  } else {
+    pw = spawnSync("npx", ["playwright", "install", "chromium"], { cwd: targetAbs, stdio: "inherit", shell: process.platform === "win32" });
+  }
   if (pw.status !== 0) {
     console.warn("\n⚠ Chromium install failed. Run `npx playwright install chromium` inside the workspace.");
   }
