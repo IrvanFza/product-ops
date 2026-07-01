@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{PRODUCT_NAME}} — Pitch Deck</title>
+<style>
+  :root { --ink:#111; --muted:#666; --accent:{{ACCENT|#2E5BFF}}; --bg:#fff; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Space Grotesk', 'DM Sans', system-ui, sans-serif; color: var(--ink); margin:0; padding:40px; line-height:1.5; }
+  .slide { min-height: 980px; page-break-after: always; padding: 8px 0; }
+  .slide:last-child { page-break-after: auto; }
+  .slide .num { color: var(--muted); font-size: 12px; }
+  h1 { font-size: 40px; margin: 0 0 4px; }
+  h2 { font-size: 24px; margin: 0 0 12px; border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-bottom: 24px; }
+  p { margin: 8px 0; }
+  .slide .body { margin-top: 16px; }
+  .footer { margin-top:40px; color:var(--muted); font-size:12px; border-top:1px solid #eee; padding-top:12px; }
+</style>
+</head>
+<body>
+
+  <section class="slide">
+    <div class="num">1 / 11</div>
+    <h1>{{PRODUCT_NAME}}</h1>
+    <div class="sub">{{TAGLINE}} · {{DATE}}</div>
+  </section>
+
+  <section class="slide">
+    <div class="num">2 / 11 · Problem</div>
+    <h2>Problem</h2>
+    <div class="body"><p>{{PROBLEM}}</p></div>
+  </section>
+
+  <section class="slide">
+    <div class="num">3 / 11 · Solution</div>
+    <h2>Solution</h2>
+    <div class="body"><p>{{SOLUTION}}</p></div>
+  </section>
+
+  <section class="slide">
+    <div class="num">4 / 11 · Market</div>
+    <h2>Market</h2>
+    <div class="body"><p>{{MARKET}}</p></div>
+  </section>
+
+  <section class="slide">
+    <div class="num">5 / 11 · Product</div>
+    <h2>Product</h2>
+    <div class="body"><p>{{PRODUCT}}</p></div>
+  </section>
+
+  <section class="slide">
+    <div class="num">6 / 11 · Traction &amp; proof</div>
+    <h2>Traction</h2>
+    <div class="body"><p>{{TRACTION}}</p></div>
+  </section>
+
+  <section class="slide">
+    <div class="num">7 / 11 · Business model</div>
+    <h2>Business model</h2>
+    <div class="body"><p>{{BUSINESS_MODEL}}</p></div>
+  </section>
+
+  <section class="slide">
+    <div class="num">8 / 11 · Competition</div>
+    <h2>Competition</h2>
+    <div class="body"><p>{{COMPETITION}}</p></div>
+  </section>
+
+  <section class="slide">
+    <div class="num">9 / 11 · Go-to-market</div>
+    <h2>Go-to-market</h2>
+    <div class="body"><p>{{GTM}}</p></div>
+  </section>
+
+  <section class="slide">
+    <div class="num">10 / 11 · Team</div>
+    <h2>Team</h2>
+    <div class="body"><p>{{TEAM}}</p></div>
+  </section>
+
+  <section class="slide">
+    <div class="num">11 / 11 · Ask</div>
+    <h2>Ask</h2>
+    <div class="body"><p>{{ASK}}</p></div>
+    <div class="footer">product-ops pitch-deck · {{PRODUCT_SLUG}} · report {{REPORT_NUM}}</div>
+  </section>
+
+</body>
+</html>
