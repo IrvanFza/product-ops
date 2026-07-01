@@ -1,0 +1,13 @@
+# Product lifecycle — canonical states for data/products.md
+# Source of truth for normalize-statuses.mjs. Keep statuses exact (no **bold**, no dates).
+
+states:
+  Ideated:    "Idea captured, not yet validated."
+  Validated:  "Demand/market-fit signals checked; worth pursuing."
+  Branded:    "Name, positioning, and brand assets drafted."
+  Planned:    "Business plan + pricing + marketing plan complete."
+  Launched:   "Publicly live / selling."
+  Scaling:    "Live and running growth/ops loops."
+  Paused:     "On hold by founder."
+  Archived:   "Discarded or sunset."
+  SKIP:       "Doesn't fit — don't build."

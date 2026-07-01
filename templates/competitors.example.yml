@@ -1,0 +1,38 @@
+# Competitors / market landscape — your tracked set.
+# USER file (never auto-updated). Seed from this example; the agent and scan.mjs
+# add entries during research. Analogous to career-ops' portals.yml.
+
+# Direct competitors
+competitors:
+  - name: ""
+    url: ""
+    pricing_url: ""
+    positioning: ""     # one-line how they position
+    last_evaluated: ""  # YYYY-MM-DD
+
+# Sources scan.mjs polls for new ideas/competitors (zero-token, public APIs/RSS)
+sources:
+  producthunt:
+    enabled: true
+    query: ""           # e.g. "AI scheduling"
+  g2:
+    enabled: true
+    category: ""
+  reddit:
+    enabled: true
+    subreddits: []      # e.g. [SaaS, EntrepreneurRideAlong]
+  hackernews:
+    enabled: true
+    query: ""
+  google_trends:
+    enabled: true
+    keywords: []
+  github:
+    enabled: true
+    topic: ""
+  appstore:
+    enabled: false
+    query: ""
+  playstore:
+    enabled: false
+    query: ""

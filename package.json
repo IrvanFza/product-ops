@@ -1,0 +1,59 @@
+{
+  "name": "product-ops",
+  "version": "0.1.0",
+  "description": "AI-powered product-creation pipeline — ideation → brand → business plan → marketing → operations. Works with any AI coding CLI. Forked from santifer/career-ops.",
+  "private": true,
+  "scripts": {
+    "doctor": "node doctor.mjs",
+    "scan": "node scan.mjs",
+    "scan:full": "node scan-ats-full.mjs",
+    "liveness": "node check-liveness.mjs",
+    "eval:gemini": "node gemini-eval.mjs",
+    "eval:ollama": "node ollama-eval.mjs",
+    "eval:openai": "node openai-eval.mjs",
+    "or": "node openrouter-runner.mjs",
+    "verify": "node verify-pipeline.mjs",
+    "normalize": "node normalize-statuses.mjs",
+    "dedup": "node dedup-tracker.mjs",
+    "merge": "node merge-tracker.mjs",
+    "reconcile": "node reconcile-pipeline.mjs",
+    "tracker": "node tracker.mjs",
+    "patterns": "node analyze-patterns.mjs",
+    "pdf": "node generate-pdf.mjs",
+    "screenshot": "node generate-screenshot.mjs",
+    "sync-check": "node product-sync-check.mjs",
+    "update:check": "node update-system.mjs check",
+    "update:test": "node updater-migration-tests.mjs",
+    "update": "node update-system.mjs apply",
+    "rollback": "node update-system.mjs rollback",
+    "build:dashboard": "node build-dashboard.mjs",
+    "serve:dashboard": "cd dashboard && go run . --path ..",
+    "validate:competitors": "node validate-competitors.mjs",
+    "postinstall": "npx playwright install chromium --with-deps || npx playwright install chromium"
+  },
+  "keywords": [
+    "ai",
+    "product",
+    "startup",
+    "founder",
+    "claude-code",
+    "opencode",
+    "ideation",
+    "marketing",
+    "pipeline",
+    "automation"
+  ],
+  "author": "IrvanFza",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IrvanFza/product-ops.git"
+  },
+  "homepage": "https://github.com/IrvanFza/product-ops",
+  "license": "MIT",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "dotenv": "^17.0.0",
+    "js-yaml": "^4.1.1",
+    "playwright": "1.61.1"
+  }
+}

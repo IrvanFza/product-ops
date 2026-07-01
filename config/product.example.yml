@@ -1,0 +1,35 @@
+# Product profile — your product identity, ICP, pricing goals, constraints.
+# This is a USER file (never overwritten by updates). Seed from this example, then
+# the agent fills it in during onboarding (see AGENTS.md "First Run — Onboarding").
+
+identity:
+  name: ""                 # working product name
+  founder: ""              # your name
+  location: ""             # city, country
+  timezone: ""             # e.g. Asia/Jakarta
+
+icp:
+  industry: ""             # target industry / vertical
+  company_size: ""         # e.g. 10-50, enterprise, solo
+  stage: ""                # e.g. seed, growth, mature
+  decision_maker_roles: [] # e.g. [Head of Growth, CMO]
+  primary_use_case: ""     # the main problem you solve
+  jobs_to_be_done: []      # 2-3 things customers "hire" you for
+
+pricing_goals:
+  model: ""                # e.g. subscription, one-time, usage, freemium
+  target_arpu: ""          # target revenue per user
+  floor: ""                # minimum viable price
+  ceiling: ""              # cap
+  currency: "USD"
+
+constraints:
+  budget: ""               # build/marketing budget
+  timeline_weeks: ""       # time to MVP
+  solo: true               # solo founder?
+
+scrape:
+  aggressive: false        # default false (robots.txt-respecting); true opts into WAF-evasion for stubborn sites
+
+language:
+  modes_dir: "modes"       # override to modes/<lang> for localized stages

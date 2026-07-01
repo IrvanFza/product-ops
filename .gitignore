@@ -1,0 +1,11 @@
+node_modules/
+output/
+data/*.db
+data/*.db-*
+batch/tracker-additions/
+plugins.local/
+plugins.lock
+.env
+.env.*
+.DS_Store
+*.log

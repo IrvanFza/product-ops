@@ -1,0 +1,28 @@
+{
+  "name": "product-ops",
+  "version": "0.1.0",
+  "description": "One-command installer for the product-ops AI product-creation pipeline workspace.",
+  "license": "MIT",
+  "author": "IrvanFza",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IrvanFza/product-ops.git"
+  },
+  "bin": {
+    "product-ops": "bin/cli.mjs"
+  },
+  "files": [
+    "bin"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "ai",
+    "product",
+    "startup",
+    "founder",
+    "scaffold",
+    "claude-code"
+  ]
+}
