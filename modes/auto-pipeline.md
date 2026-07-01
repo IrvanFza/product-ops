@@ -40,11 +40,36 @@ in the report.
 
 Do not continue to Step 1 until this gate is resolved.
 
+## Step 0.7 — Validate (optional, opt-in)
+
+If the founder wants real demand proof (or Block A is "unconfirmed"), run
+`modes/validate.md`: draft an ICP interview/survey script, or mine social data
+(Reddit/HN/TikTok/IG) as a proxy, ingest responses, synthesize verified demand
+evidence. Updates Block A. Opt-in — skipped by default (needs customer access or
+a social-data proxy).
+
 ## Step 1 — A–G Evaluation
 
 Execute the `evaluate` mode (read `modes/evaluate.md` for all A–F blocks + Block
 G Market Legitimacy). The evaluation inherits the bounded research budget from
 `_shared.md` — no `deep-research`, no subagents, stop at the query cap.
+
+## Step 1b — Feasibility (technical)
+
+Run `modes/feasibility.md`: is this buildable by this founder? Component
+breakdown (have/make/buy), API/platform gates (Meta/Google/WhatsApp review lead
+times), data + model availability, integration risk. Append `## Feasibility`
+(score 1–5 + component table + gating items + top risks) to the report. NO stack
+suggestions — feasibility + risk only.
+
+## Step 1c — Financials (cost, timeline, infrastructure)
+
+Run `modes/financials.md`: market-size proxies (TAM/SAM/SOM from scan data) →
+adoption ramp → **infrastructure estimation** (vCPU/RAM/storage/bandwidth
+ballpark + monthly $, NO stack) → cost structure (variable model/API
+pass-through vs fixed infra) → break-even MRR → timeline (MVP→launch→scale,
+gating items on critical path) → unit-economics sensitivity. Append `##
+Financials` to the report.
 
 ## Step 2 — Save Report .md
 
@@ -52,6 +77,20 @@ Save the full evaluation in `reports/{###}-{product-slug}-{YYYY-MM-DD}.md`
 (format in `modes/evaluate.md`). Include Block G. Header must carry `**URL:**`,
 `**Score:** X.X/5`, `**Legitimacy:** {tier}`, `**Archetype:** {type}`. Reserve
 the number atomically via `reserve-report-num.mjs`.
+
+## Step 2b — Review (red-team / Block I)
+
+Run `modes/review.md`: an adversarial pass on the report — over-optimism check,
+fabrication/claim audit, missing competitors, weak-block pressure, legitimacy
+skepticism, must-fix list. Append `## I) Review & Audit` (recalibrated score ≤
+original + confidence delta + must-fix). The Decision step reads this.
+
+## Step 2c — Decision (verdict)
+
+Run `modes/decision.md`: synthesize A–G + Feasibility + Financials + Review (+
+Compliance if run) into a **GO / NO-GO / PIVOT** verdict with rationale,
+conditions, and the single next action. Append `## Decision: {VERDICT}` to the
+report and write a Decision log entry to the tracker notes (Step 5).
 
 ## Step 3 — Generate stage artifacts
 
@@ -71,6 +110,12 @@ Route the *content* of each artifact through the corresponding marketingskills
 (see `modes/brand.md` / `modes/plan.md` / `modes/market.md` for the skill calls).
 
 ## Step 4 — Draft positioning + pricing + launch plan (only if score ≥ 4.0)
+
+**Compliance gate (before launch plan):** run `modes/compliance.md` — audit
+Meta/Google Ads ToS, Indonesia UU PDP (data privacy), WhatsApp BSP policy,
+ad-creative disclosure. If blocking red flags exist, note them in `## Compliance`
+and do NOT draft the launch plan's publish/spend steps until cleared (flag for
+the founder).
 
 1. **Positioning** (one paragraph) — read `.agents/product-marketing.md`; route via `product-marketing` skill.
 2. **Pricing** — one concrete proposal (model, tiers, anchor, free-tier y/n); route via `pricing` + `offers` skills.

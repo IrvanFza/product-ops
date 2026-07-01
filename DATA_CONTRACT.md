@@ -42,6 +42,7 @@ improve with each release.
 | `modes/auto-pipeline.md` | Auto-pipeline instructions |
 | `modes/ideate.md` `brand.md` `plan.md` `market.md` `operate.md` `evaluate.md` | Stage mode instructions |
 | `modes/scan.md` `pipeline.md` `tracker.md` `deep.md` `batch.md` `patterns.md` | Utility mode instructions |
+| `modes/feasibility.md` `financials.md` `decision.md` `review.md` `validate.md` `compliance.md` | Assessment-loop mode instructions |
 | `modes/_profile.template.md` | Template seed for the user's `modes/_profile.md` |
 | `CLAUDE.md` `OPENCODE.md` `CODEX.md` `GEMINI.md` `KIMI.md` | Thin `@AGENTS.md` redirect wrappers |
 | `AGENTS.md` | Canonical agent instructions (imported by CLI-specific wrappers) |

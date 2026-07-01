@@ -1,6 +1,6 @@
 {
   "name": "product-ops",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "AI-powered product-creation pipeline — ideation → brand → business plan → marketing → operations. Works with any AI coding CLI. Forked from santifer/career-ops.",
   "private": true,
   "scripts": {

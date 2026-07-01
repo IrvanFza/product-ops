@@ -91,6 +91,23 @@ WebSearch → ask user. Never trust WebSearch alone for liveness.
 - Present signals and let the user decide.
 - Always note legitimate explanations for concerning signals.
 
+## Extended blocks (post A–G, qualitative — not part of the weighted 1–5)
+
+After the A–G evaluation, the assessment-loop modes append structured sections to
+the report. They do **not** change the weighted A–F global (like Block G):
+
+| Mode | Section | What |
+|------|---------|------|
+| `feasibility` | `## Feasibility` | Technical buildability (have/make/buy, API gates, risks). 1–5 + gating items. |
+| `financials` | `## Financials` | Cost, timeline, **infrastructure estimation** (vCPU/RAM/storage/$, NO stack), break-even, unit economics. |
+| `review` | `## I) Review & Audit` | Red-team critique; recalibrated score ≤ original; must-fix list. |
+| `decision` | `## Decision: {VERDICT}` | GO / NO-GO / PIVOT + rationale + conditions + next action. |
+| `validate` | `## Validation` (opt-in) | Customer-voice evidence; updates Block A. |
+| `compliance` | `## Compliance` (launch gate) | ToS / UU PDP / WhatsApp BSP / ad-disclosure audit. |
+
+The `decision` mode reads A–G + feasibility + financials + review + compliance
+to produce the verdict.
+
 ## Archetype Detection
 
 Classify every idea into one (or a hybrid of two):

@@ -30,6 +30,12 @@ competitor URL → research → evaluate → brand/plan PDFs → tracker).
 context every other stage reads first. If missing, create/update it in stage 2
 (brand) before anything downstream runs.
 
+**Assessment loop (after the A–G evaluation, before/during plan):**
+`feasibility` (technical) → `financials` (cost / timeline / infrastructure) →
+`review` (red-team Block I) → `decision` (GO/NO-GO/PIVOT verdict). `validate`
+(customer proof) is opt-in to strengthen Block A; `compliance` gates launch.
+Wired into `auto-pipeline.md` Steps 1b/1c/2b/2c + the Step 4 compliance gate.
+
 ## Artifacts by stage
 
 | Stage | Template → output |
@@ -54,6 +60,12 @@ Render via `generate-pdf.mjs` (Playwright HTML→PDF, a4, `printBackground: true
 | Wants a pitch deck / one-pager | stage 4 (option) |
 | Asks to evaluate one idea | `evaluate` |
 | Asks to compare ideas | `evaluate` (compare) |
+| "Is it technically possible?" | `feasibility` |
+| "How much / how big a server / timeline?" | `financials` |
+| "Should I build this? Verdict?" | `decision` |
+| "Pressure-test / review this eval" | `review` |
+| "Validate demand with customers" | `validate` |
+| "Is it compliant? (UU PDP / Ads ToS)" | `compliance` |
 
 ## Critical rules
 
