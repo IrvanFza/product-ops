@@ -25,6 +25,33 @@ npx product-ops init          # scaffold a workspace (or: npx IrvanFza/product-o
 # then open your AI CLI inside the folder and paste an idea or competitor URL
 ```
 
+## Testing
+
+```bash
+node test-all.mjs      # run the full test suite (no framework — node:assert/strict)
+```
+
+Tests live as `*.test.mjs` at the repo root and cover liveness classification,
+the tracker parser, the TSV→`data/products.md` merge, and status
+canonicalization. Every test is self-running: `node <file>.test.mjs` exits `0`
+on pass, `1` on fail. CI runs the whole suite on every push and pull request.
+
+## Contributing
+
+We work **issue-first**: open an [issue](https://github.com/IrvanFza/product-ops/issues)
+to discuss a feature or architecture change *before* writing code (bug fixes,
+docs, and new scanner providers can go straight to a PR). When in doubt,
+start in [Discussions](https://github.com/IrvanFza/product-ops/discussions).
+
+1. Open an issue (or join a Discussion).
+2. Fork and branch (`git checkout -b feature/my-feature`).
+3. Make your change; keep it minimal and local-first.
+4. `node test-all.mjs` — all tests must pass.
+5. Open a PR referencing the issue (`Closes #123`).
+6. CI green → review → merge.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide.
+
 ## Status
 
 🚧 M1 (skeleton) in progress. See [`product-ops-plan.md`](../PawonAI/product-ops-plan.md)
